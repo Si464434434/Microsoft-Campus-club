@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Microsoft Campus Club</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#fff;
+    color:#111;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    padding:35px 20px 25px;
+}
+
+.logo{
+    display:inline-grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+    width:55px;
+    height:55px;
+    vertical-align:middle;
+    margin-right:18px;
+}
+
+.logo span:nth-child(1){background:#f25022;}
+.logo span:nth-child(2){background:#7fba00;}
+.logo span:nth-child(3){background:#00a4ef;}
+.logo span:nth-child(4){background:#ffb900;}
+
+.header h1{
+    display:inline-block;
+    vertical-align:middle;
+    font-size:clamp(35px,6vw,65px);
+    color:#071d78;
+    font-weight:700;
+}
+
+.line{
+    max-width:900px;
+    height:7px;
+    margin:18px auto 0;
+
+    background:linear-gradient(
+        90deg,
+        #00a4ef 0%,
+        #00a4ef 25%,
+        #7fba00 25%,
+        #7fba00 50%,
+        #ffb900 50%,
+        #ffb900 75%,
+        #f25022 75%,
+        #f25022 100%
+    );
+}
+
+/* TEAM GRID */
+.container{
+    max-width:1150px;
+    margin:45px auto 70px;
+    padding:0 20px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px 38px;
+}
+
+/* TEAM */
+.team{
+    overflow:hidden;
+}
+
+.team-title{
+    min-height:82px;
+    padding:15px 22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    color:white;
+    border-radius:17px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.team-title:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.team-title h2{
+    font-size:clamp(20px,3vw,31px);
+    line-height:1.1;
+}
+
+.icon{
+    font-size:35px;
+    margin-left:10px;
+}
+
+/* COLORS */
+.technical .team-title{
+    background:linear-gradient(135deg,#1167e8,#0754cf);
+}
+
+.social .team-title{
+    background:linear-gradient(135deg,#0a9b37,#00852c);
+}
+
+.event .team-title{
+    background:linear-gradient(135deg,#5c00ff,#3910c7);
+}
+
+.volunteer .team-title{
+    background:linear-gradient(135deg,#ff6500,#f45100);
+}
+
+.video .team-title{
+    background:linear-gradient(135deg,#0c9bb5,#008b9f);
+}
+
+.graphic .team-title{
+    background:linear-gradient(135deg,#f00067,#e4005d);
+}
+
+/* MEMBERS */
+.members{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .55s ease,opacity .4s ease;
+    opacity:0;
+}
+
+.members.show{
+    opacity:1;
+}
+
+.member{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:13px 20px;
+
+    font-size:21px;
+    font-weight:500;
+
+    transform:translateY(-10px);
+    opacity:0;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+.members.show .member{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* BULLETS */
+.member::before{
+    content:"";
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    flex-shrink:0;
+}
+
+.technical .member::before{
+    background:#1167e8;
+}
+
+.social .member::before{
+    background:#079437;
+}
+
+.event .member::before{
+    background:#4d12df;
+}
+
+.volunteer .member::before{
+    background:#ff5b00;
+}
+
+.video .member::before{
+    background:#0aa5ba;
+}
+
+.graphic .member::before{
+    background:#ec0062;
+}
+
+/* MOBILE */
+@media(max-width:750px){
+
+    .header{
+        padding-top:25px;
+    }
+
+    .logo{
+        width:40px;
+        height:40px;
+        margin-right:8px;
+    }
+
+    .header h1{
+        font-size:34px;
+    }
+
+    .container{
+        grid-template-columns:1fr;
+        gap:25px;
+        margin-top:30px;
+    }
+
+    .team-title{
+        min-height:70px;
+        padding:13px 17px;
+    }
+
+    .team-title h2{
+        font-size:21px;
+    }
+
+    .icon{
+        font-size:27px;
+    }
+
+    .member{
+        font-size:18px;
+        padding:11px 15px;
+    }
+
+    .member::before{
+        width:13px;
+        height:13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div>
+
+        <div class="logo">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <h1>Microsoft Campus Club</h1>
+
+    </div>
+
+    <div class="line"></div>
+
+</header>
+
+
+<!-- TEAMS -->
+
+<main class="container">
+
+    <!-- 1. TECHNICAL TEAM -->
+
+    <section class="team technical">
+
+        <div class="team-title" onclick="toggleTeam(this)">
+
+            <h2>1. Technical Team</h2>
+
+            <span class="icon">&lt;/&gt;</span>
+
+        </div>
+
+        <div class="members">
+
+            <div class="member">Abhay Vishwakarma</div>
+            <div class="member">Abdul Wajid</div>
+            <div class="member">Krishna Tiwari</div>
+            <div class="member">Saransh Verma</div>
+
+            <!-- CORRECTED NAMES -->
+
+            <div class="member">Kartik Namdeo</div>
+            <div class="member">Harsh Shukla</div>
+            <div class="member">Kartik Misra</div>
+            <div class="member">Shreya Dwivedi</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 2. SOCIAL MEDIA TEAM -->
+
+    <section class="team social">
+
+        <div class="team-title" onclick="toggleTeam(this)">
+
+            <h2>2. Social Media Team</h2>
+
+            <span class="icon">📣</span>
+
+        </div>
+
+        <div class="members">
+
+            <div class="member">Kriti Agnihotri</div>
+            <div class="member">Ashi Yadav</div>
+            <div class="member">Simran Khan</div>
+            <div class="member">Shreya Dwivedi</div>
+            <div class="member">Rinki Chaurasiya</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 3. EVENT & OPERATION -->
+
+    <section class="team event">
+
+        <div class="team-title" onclick="toggleTeam(this)">
+
+            <h2>3. Event &amp; Operation Team</h2>
+
+            <span class="icon">▣</span>
+
+        </div>
+
+        <div class="members">
+
+            <div class="member">Jay Tiwari</div>
+            <div class="member">Prachi Daharwal</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 4. VOLUNTEERS -->
+
+    <section class="team volunteer">
+
+        <div class="team-title" onclick="toggleTeam(this)">
+
+            <h2>4. Volunteers</h2>
+
+            <span class="icon">👥</span>
+
+        </div>
+
+        <div class="members">
+
+            <div class="member">Shruti Sahu</div>
+            <div class="member">Adarsh Sharma</div>
+            <div class="member">Aniruddh Yadav</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 5. VIDEO EDITOR -->
+
+    <section class="team video">
+
+        <div class="team-title" onclick="toggleTeam(this)">
+
+            <h2>5. Video Editor</h2>
+
+            <span class="icon">▶</span>
+
+        </div>
+
+        <div class="members">
+
+            <div class="member">Bhushan Pandit</div>
+            <div class="member">Bhumi</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 6. GRAPHIC DESIGNER -->
+
+    <section class="team graphic">
+
+        <div class="team-title" onclick="toggleTeam(this)">
+
+            <h2>6. Graphic Designer</h2>
+
+            <span class="icon">✎</span>
+
+        </div>
+
+        <div class="members">
+
+            <div class="member">Mahi Vishwakarma</div>
+            <div class="member">Shreya Patel</div>
+            <div class="member">Rajeshwari Yadav</div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* ==============================
+   TEAM CLICK / REVEAL
+============================== */
+
+function toggleTeam(title){
+
+    const team = title.parentElement;
+
+    const members = team.querySelector(".members");
+
+    const isOpen =
+        members.classList.contains("show");
+
+
+    /* Close all teams */
+
+    document
+        .querySelectorAll(".members")
+        .forEach(box => {
+
+            box.classList.remove("show");
+
+            box.style.maxHeight = "0px";
+
+        });
+
+
+    /* Open clicked team */
+
+    if(!isOpen){
+
+        members.classList.add("show");
+
+        members.style.maxHeight =
+            members.scrollHeight + "px";
+
+
+        setTimeout(() => {
+
+            team.scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+        },150);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
